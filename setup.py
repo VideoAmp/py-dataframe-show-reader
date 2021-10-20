@@ -3,11 +3,11 @@ from setuptools import setup, find_packages
 with open('README.md', 'r') as readme_file:
     long_description = readme_file.read()
 
-requirements = ['pyspark>=2']
+requirements = ['pyspark>=3.1']
 
 setup(
     name='py-dataframe-show-reader',
-    version='1.0.0',
+    version='2.0.0',
     author='Steve Whalen',
     author_email='sjwhalen@yahoo.com',
     description='Reads the output of a DataFrame.show() statement into a DataFrame',
@@ -18,8 +18,7 @@ setup(
     install_requires=requirements,
     classifiers=[
         'License :: OSI Approved :: Apache Software License',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.9'
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.9',
 )
