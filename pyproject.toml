@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "py-dataframe-show-reader"
+version = "2.0.0"
+description = "Reads the output of a DataFrame.show() statement into a DataFrame"
+authors = ["Steve Whalen <sjwhalen@yahoo.com>"]
+license = "Apache-2.0"
+
+packages = [
+    { include = "dataframe_show_reader" },
+]
+
+[tool.poetry.dependencies]
+python = "3.9.6"
+
+[tool.poetry.dev-dependencies]
+pyspark = "3.1.2"
+pytest = "6.2.5"
+twine = "3.4.2"
+wheel = "0.37.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
