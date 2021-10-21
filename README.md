@@ -133,11 +133,41 @@ this compact display of the expected numbers of rows and columns and data,
 ``assert_equal`` checks that the DataFrame schemas match, which the first
 version of the test does not do.
 
-## Running the Tests
+## Setup (Mac Specific)
 
 1. Clone the git repo.
+1. Run the following commands
+    ```
+    brew install zsh-completions
+    brew install pyenv
+    pyenv install 3.9.6
+    ```
+1. Use [pyenv README documentation](https://github.com/pyenv/pyenv) to finish setting up pyenv
+1. Run the following commands
+    ```
+    brew install pipx
+    pipx ensurepath
+    pipx install --python /Users/<user_name>/.pyenv/versions/3.9.6/bin/python3.9 poetry==1.1.10
+    poetry help completions
+    poetry completions zsh > ~/.zfunc/_poetry
+    ```
+1. In the repo directory
+    ```
+    pyenv local 3.9.6
+    poetry env use 3.9.6
+    poetry install
+    poetry config virtualenvs.path /<fully_qualified_path>/py-dataframe-show-reader/.venv
+    ```
+
+## Running the Tests
+
 1. ``cd`` into the root level of the repo.
-1. At a terminal command line, run ``pytest``
+1. Run the following commands
+    ```
+    # Only need to run shell once to activate virtualenv
+    poetry shell
+    poetry run pytest
+    ```
 
 ## Installation
 

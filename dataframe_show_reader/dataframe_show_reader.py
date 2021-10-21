@@ -292,20 +292,15 @@ def _get_schema(columns: list, types: list):
     """
     schema_columns = []
 
-    # We need to create a dictionary, then sort it by column name
-    # because createDataFrame() orders the columns and the
-    # schema must match that order.
-
-    # Create a dictionary
+    # Create a dictionary to combine columns with their respective data types
     col_types = {}
     for i, column in enumerate(columns):
         col_types[column] = types[i].lower()
 
-    # Sort the dictionary by column and add each
-    # column (in order) to our schema.
-    for col_type in sorted(col_types.items(), key=lambda kv: kv[0]):
-        data_type = col_type[1]
+    # Preserve the original order of the columns
+    for col_type in col_types:
+        data_type = col_types[col_type]
         if data_type not in _TYPE_MAP:
             raise ValueError(f'Unrecognized data type "{data_type}"')
-        schema_columns.append(StructField(col_type[0], _TYPE_MAP[data_type][1]))
+        schema_columns.append(StructField(col_type, _TYPE_MAP[data_type][1]))
     return StructType(schema_columns)
