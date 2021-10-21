@@ -292,17 +292,12 @@ def _get_schema(columns: list, types: list):
     """
     schema_columns = []
 
-    # We need to create a dictionary, then sort it by column name
-    # because createDataFrame() orders the columns and the
-    # schema must match that order.
-
-    # Create a dictionary
+    # Create a dictionary to combine columns with their respective data types
     col_types = {}
     for i, column in enumerate(columns):
         col_types[column] = types[i].lower()
 
-    # Sort the dictionary by column and add each
-    # column (in order) to our schema.
+    # Preserve the original order of the columns
     for col_type in col_types:
         data_type = col_types[col_type]
         if data_type not in _TYPE_MAP:
