@@ -17,8 +17,8 @@ from datetime import datetime
 
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import Row
-from pyspark.sql.types import (ArrayType, BooleanType, DoubleType, IntegerType, LongType,
-                               StringType, StructType, StructField, TimestampType)
+from pyspark.sql.types import (ArrayType, BooleanType, DateType, DoubleType, IntegerType,
+                               LongType, StringType, StructType, StructField, TimestampType)
 
 DATA_TYPE_START_INDICATOR = '['
 DATA_TYPE_END_INDICATOR = ']'
@@ -153,6 +153,15 @@ def save_df_as_table(table_name: str,
         .saveAsTable(table_name, mode='Overwrite')
     spark_session.sql(f'REFRESH TABLE {table_name}')
 
+def ds(date_string: str):
+    """
+    Convert a DataFrame show output-style date string into a datetime value
+    which will marshall to a Hive/Spark DateType
+    :param date_string: A date string in "YYYY-MM-DD" format
+    :return: A datetime object
+    """
+    return datetime.strptime(date_string, '%Y-%m-%d')
+
 
 def ts(timestamp_string: str):
     """
@@ -260,6 +269,7 @@ def _parse_boolean(boolean: str):
 _TYPE_MAP = {
     'bigint': (int, LongType()),
     'boolean': (_parse_boolean, BooleanType()),
+    'date': (ds, DateType()),
     'double': (float, DoubleType()),
     'float': (float, DoubleType()),
     'int': (int, IntegerType()),
