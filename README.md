@@ -140,21 +140,21 @@ version of the test does not do.
     ```
     brew install zsh-completions
     brew install pyenv
-    pyenv install 3.9.6
+    pyenv install 3.9.7
     ```
 1. Use [pyenv README documentation](https://github.com/pyenv/pyenv) to finish setting up pyenv
 1. Run the following commands
     ```
     brew install pipx
     pipx ensurepath
-    pipx install --python /Users/<user_name>/.pyenv/versions/3.9.6/bin/python3.9 poetry==1.1.10
+    pipx install --python /Users/<user_name>/.pyenv/versions/3.9.7/bin/python3.9 poetry==1.1.10
     poetry help completions
     poetry completions zsh > ~/.zfunc/_poetry
     ```
 1. In the repo directory
     ```
-    pyenv local 3.9.6
-    poetry env use 3.9.6
+    pyenv local 3.9.7
+    poetry env use 3.9
     poetry install
     poetry config virtualenvs.path /<fully_qualified_path>/py-dataframe-show-reader/.venv
     ```
